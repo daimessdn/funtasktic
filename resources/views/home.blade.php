@@ -9,10 +9,10 @@
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<style type="text/css" media="screen">
 		body, html, * {
-			font-family: 'Helvetica Neue'
+			font-family: 'Helvetica Neue';
 		}
 
-		nav i {
+		i.fa {
 			padding-right: 2px;
 		}
 
@@ -70,6 +70,28 @@
 			</ul>
 		</div>
 	</nav>
+
+	<div class="container">
+		<form class="form-inline mt-3" action="/tasks/create" method="POST">
+		  @csrf
+		  <input type="text" name="task_name" class="form-control mb-2 mr-sm-2" placeholder="Input task here...">
+
+		  <label class="sr-only" for="due">Due to</label>
+		  <div class="input-group mb-2 mr-sm-2">
+		    <div class="input-group-prepend">
+		      <div class="input-group-text">
+		      	<i class="fa fa-calendar"></i>
+		      </div>
+		    </div>
+		    <input type="date" name="due" class="form-control" placeholder="Due">
+		  </div>
+
+		  <button type="submit" class="btn btn-primary mb-2">
+		  	<i class="fa fa-plus"></i> Submit
+		  </button>
+		</form>
+	</div>
+
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -23,3 +23,7 @@ route::get('/logout', 'HomeController@logout');
 
 // home
 Route::get('/home', 'HomeController@index');
+
+// task interactions
+// make tasks
+Route::post('/tasks/create', "TaskController@create");
