@@ -12,4 +12,10 @@ class HomeController extends Controller
 
     	return view('home')->with('user', $user)->with('player', $user->player);
     }
+
+    public function logout() {
+    	Auth::logout();
+
+    	return redirect('login');
+    }
 }
