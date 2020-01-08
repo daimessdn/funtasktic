@@ -100,8 +100,8 @@
 					<span class="badge badge-primary">{{ $task->due }}</span>
 				</td>
 				<td>
-					<a href="{{ $task->id }}/done" class="btn btn-sm btn-primary">mark completed</a>
-					<a href="{{ $task->id }}/delete" class="btn btn-sm btn-danger">delete</a>
+					<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary">mark completed</a>
+					<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger">delete</a>
 				</td>
 			</tr>
 
