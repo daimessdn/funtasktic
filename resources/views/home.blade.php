@@ -28,7 +28,7 @@
 		<div class="container">
 			<a class="navbar-brand" href="#">
 				&#64;{{ $user->name }}<br />
-				<span class="badge badge-primary"> Level {{ $player->level }}</span>
+				<span class="badge badge-primary badge-sm"> Level {{ $player->level }}</span>
 			</a>
 
 			<ul class="navbar-nav mr-auto">
@@ -65,7 +65,21 @@
 					</a>
 				</li>
 				<li class="nav-status">
-					<a class="nav-link" href="/logout">Logout</a>
+					<a class="nav-link active" href="#">
+						<i class="fa fa-calendar"></i>
+						{{ $mytime = Carbon\Carbon::now()->format('d-m-Y') }}
+					</a>
+				</li>
+				<li class="nav-status">
+					<a class="nav-link" href="#">
+						Challenge
+					</a>
+				</li>
+				<li class="nav-status">
+					<a class="nav-link" href="/logout">
+						<i class="fa fa-sign-out"></i>
+						Logout
+					</a>
 				</li>
 			</ul>
 		</div>
@@ -86,7 +100,7 @@
 				<input type="date" name="due" class="form-control" placeholder="Due">
 			</div>
 
-			<button type="submit" class="btn btn-primary mb-2">
+			<button type="submit" class="btn btn-primary mb-2 btn-sm">
 				<i class="fa fa-plus"></i> Submit
 			</button>
 		</form>
@@ -99,9 +113,9 @@
 					{{ $task->task_name }}<br />
 					<span class="badge badge-primary">{{ $task->due }}</span>
 				</td>
-				<td>
-					<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary">mark completed</a>
-					<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger">delete</a>
+				<td class="col-md-6">
+					<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary mb-1">mark completed</a>
+					<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger mb-1">delete</a>
 				</td>
 			</tr>
 
