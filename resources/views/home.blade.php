@@ -20,22 +20,36 @@
 </head>
 <body>
 	<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-		<a class="navbar-brand" href="#">funtasktic</a>
+		<a class="navbar-brand" href="#">
+			&#64;{{ $user->name }}<br />
+			<span class="badge badge-primary"> Level {{ $player->level }}</span>
+		</a>
 
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-status">
-				Level 1
-			</li> 
-			<li class="nav-status" style="width: 150px;">
-				Health: 100/100
+			<li class="nav-status" style="width: 175px;">
+				Health: {{ $player->health }} / {{ $player->max_health }}
 				<div class="progress">
-					<div class="progress-bar" style="width: 100%" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+					<div
+						class="progress-bar"
+						style="width: {{ $player->health / $player->max_health * 100 }}%"
+						role="progressbar"
+						aria-valuenow={{ $player->health }}
+						aria-valuemin="0"
+						aria-valuemax={{ $player->max_health }}
+					></div>
 				</div>
 			</li> 
-			<li class="nav-status" style="width: 150px;">
-				XP: 1/100
+			<li class="nav-status" style="width: 175px;">
+				XP: {{ $player->xp }} / {{ $player->max_xp }}
 				<div class="progress">
-					<div class="progress-bar" style="width: 1%" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+					<div
+						class="progress-bar"
+						style="width: {{ $player->xp / $player->max_xp * 100 }}%"
+						role="progressbar"
+						aria-valuenow="{{ $player->xp }}"
+						aria-valuemin="0"
+						aria-valuemax={{ $player->max_xp }}
+					></div>
 				</div>
 			</li>
 		</ul>
