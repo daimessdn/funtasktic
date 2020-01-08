@@ -73,23 +73,40 @@
 
 	<div class="container">
 		<form class="form-inline mt-3" action="/tasks/create" method="POST">
-		  @csrf
-		  <input type="text" name="task_name" class="form-control mb-2 mr-sm-2" placeholder="Input task here...">
+			@csrf
+			<input type="text" name="task_name" class="form-control mb-2 mr-sm-2" placeholder="Input task here...">
 
-		  <label class="sr-only" for="due">Due to</label>
-		  <div class="input-group mb-2 mr-sm-2">
-		    <div class="input-group-prepend">
-		      <div class="input-group-text">
-		      	<i class="fa fa-calendar"></i>
-		      </div>
-		    </div>
-		    <input type="date" name="due" class="form-control" placeholder="Due">
-		  </div>
+			<label class="sr-only" for="due">Due to</label>
+			<div class="input-group mb-2 mr-sm-2">
+				<div class="input-group-prepend">
+					<div class="input-group-text">
+						<i class="fa fa-calendar"></i>
+					</div>
+				</div>
+				<input type="date" name="due" class="form-control" placeholder="Due">
+			</div>
 
-		  <button type="submit" class="btn btn-primary mb-2">
-		  	<i class="fa fa-plus"></i> Submit
-		  </button>
+			<button type="submit" class="btn btn-primary mb-2">
+				<i class="fa fa-plus"></i> Submit
+			</button>
 		</form>
+
+		<table>
+			@foreach($tasks as $task)
+
+			<tr>
+				<td class="col-md-6">
+					{{ $task->task_name }}<br />
+					<span class="badge badge-primary">{{ $task->due }}</span>
+				</td>
+				<td>
+					<a href="{{ $task->id }}/done" class="btn btn-sm btn-primary">mark completed</a>
+					<a href="{{ $task->id }}/delete" class="btn btn-sm btn-danger">delete</a>
+				</td>
+			</tr>
+
+			@endforeach
+		</table>
 	</div>
 
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
