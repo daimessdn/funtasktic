@@ -77,7 +77,7 @@
 				</li>
 				<li class="nav-status">
 					<a class="nav-link" href="/logout">
-						<i class="fa fa-sign-out"></i>
+						<i class="fa fa-sign-out"></i>	
 						Logout
 					</a>
 				</li>

@@ -45,4 +45,16 @@ class TaskController extends Controller
 
     	return redirect('home');
     }
+
+    public function delete($id) {
+    	$task = Task::find($id);
+    	$task->delete($task);
+
+    	$level = Auth::user()->player->level;
+    	$health = Auth::user()->player->health;
+
+    	DB::update('update player set health = ? where user_id = ?', [$health - 10, Auth::user()->id]);
+
+    	return redirect('home');
+    }
 }

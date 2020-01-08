@@ -27,3 +27,4 @@ Route::get('/home', 'HomeController@index');
 // task interactions
 Route::post('/tasks/create', "TaskController@create");			// make tasks
 Route::get('/tasks/{id}/done', "TaskController@done");			// mark done the task and get 10 XP
+Route::get('/tasks/{id}/delete', "TaskController@delete");		// delete 1 task and inflict 10 damage
