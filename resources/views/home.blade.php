@@ -84,6 +84,8 @@
 			@csrf
 			<input type="text" name="task_name" class="form-control mb-2 mr-sm-2" placeholder="Input task here...">
 
+			<input type="text" class="form-control mb-2 mr-sm-2" name="task_desc" placeholder="Description here">
+
 			<label class="sr-only" for="due">Due to</label>
 			<div class="input-group mb-2 mr-sm-2">
 				<div class="input-group-prepend">
@@ -95,7 +97,7 @@
 			</div>
 
 			<button type="submit" class="btn btn-primary mb-2 btn-sm">
-				<i class="fa fa-plus"></i> Submit
+				<i class="fa fa-plus"></i> submit
 			</button>
 		</form>
 
@@ -104,7 +106,10 @@
 
 			<tr>
 				<td class="col-md-6">
-					{{ $task->task_name }}<br />
+					<strong>{{ $task->task_name }}</strong><br />
+					@if ($task->task_desc)
+						{{ $task->task_desc }}<br />
+					@endif
 					<span class="badge badge-primary">{{ $task->due }}</span>
 				</td>
 				<td class="col-md-6">
