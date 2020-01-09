@@ -46,7 +46,7 @@
 			</li>
 
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-status" style="width: 175px;">
+				<li class="nav-status" style="width: 200px;">
 					Health: {{ $player->health }} / {{ $player->max_health }}
 					<div class="progress">
 						<div
@@ -59,7 +59,7 @@
 						></div>
 					</div>
 				</li>
-				<li class="nav-status" style="width: 175px;">
+				<li class="nav-status" style="width: 200px">
 					XP: {{ $player->xp }} / {{ $player->max_xp }}
 					<div class="progress">
 						<div
@@ -120,7 +120,7 @@
 	<div class="container">
 
 		@if (count($tasks) > 0)
-			<table class="mt-3 mb-3">
+			<table class="mb-3">
 				@foreach($tasks as $task)
 
 				<tr class="row">
