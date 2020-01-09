@@ -83,9 +83,10 @@
 		</div>
 	</nav>
 
-	<div class="container">
-		<form class="form-inline mt-3 sticky-top navbar navbar-dark bg-dark" action="/tasks/create" method="POST">
-			@csrf
+
+	<form class="form sticky-top navbar navbar-dark bg-dark" action="/tasks/create" method="POST">
+		@csrf
+		<div class="container">
 			<input type="text" name="task_name" class="form-control mb-2 mr-sm-2" placeholder="Input task here...">
 
 			<input type="text" class="form-control mb-2 mr-sm-2" name="task_desc" placeholder="Description here">
@@ -103,7 +104,10 @@
 			<button type="submit" class="btn btn-primary mb-2 btn-sm">
 				<i class="fa fa-plus"></i> submit
 			</button>
-		</form>
+		</div>
+	</form>
+
+	<div class="container">
 
 		<table class="mb-3">
 			@foreach($tasks as $task)
