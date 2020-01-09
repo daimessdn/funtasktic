@@ -97,7 +97,15 @@
 	<form class="form sticky-top jumbotron bg-dark" action="/tasks/create" method="POST">
 		@csrf
 		<div class="container">
-			<input type="text" name="task_name" class="form-control mb-2 mr-sm-2" placeholder="Input task here...">
+			<div class="input-group mb-2 mr-sm-2">
+				<input type="text" name="task_name" class="form-control col-md-9 col-sm-8" placeholder="Input task here...">
+				<div class="input-group-prepend">
+					<div class="input-group-text">
+						<strong>#</strong>
+					</div>
+				</div>
+				<input type="text" name="task_tag" class="form-control col-md-3 col-sm-4" placeholder="hashtag (optional)">
+			</div>
 
 			<input type="text" class="form-control mb-2 mr-sm-2" name="task_desc" placeholder="Description here">
 
