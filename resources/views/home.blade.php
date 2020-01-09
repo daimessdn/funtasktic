@@ -22,9 +22,17 @@
 			padding: .5rem 1rem;
 			color: #fff;
 		}
+
+		tr {
+			margin-top: 10px;
+			padding: 5px 0;
+			background-color: #343a40;
+			color: #fff;
+			border-radius: 5px;
+		}
 	</style>
 </head>
-<body>
+<body onload="timeTick()">
 	<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top">
 		<div class="container">
 			<a class="navbar-brand nav-status" href="#">
@@ -66,7 +74,9 @@
 				</li>
 				<li class="nav-status">
 					<i class="fa fa-calendar"></i>
-					{{ $mytime = Carbon\Carbon::now()->format('d-m-Y') }}
+					{{ $mytime = Carbon\Carbon::now()->format('d-m-Y') }}<br />
+					<i class="fa fa-clock-o"></i>
+					<span id="time"></span>
 				</li>
 				<li class="nav-status">
 					<a class="nav-link" href="#">
@@ -84,7 +94,7 @@
 	</nav>
 
 
-	<form class="form sticky-top navbar navbar-dark bg-dark" action="/tasks/create" method="POST">
+	<form class="form sticky-top jumbotron bg-dark" action="/tasks/create" method="POST">
 		@csrf
 		<div class="container">
 			<input type="text" name="task_name" class="form-control mb-2 mr-sm-2" placeholder="Input task here...">
@@ -109,18 +119,18 @@
 
 	<div class="container">
 
-		<table class="mb-3">
+		<table class="mt-3 mb-3">
 			@foreach($tasks as $task)
 
-			<tr>
-				<td>
+			<tr class="row">
+				<td class="col-md-6">
 					<strong>{{ $task->task_name }}</strong><br />
 					@if ($task->task_desc)
 						{{ $task->task_desc }}
 					@endif
 					<span class="badge badge-primary">{{ $task->due }}</span>
 				</td>
-				<td>
+				<td class="col-md-6 text-right">
 					<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary mb-1">mark completed</a>
 					<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger mb-1">delete</a>
 				</td>
@@ -130,6 +140,16 @@
 		</table>
 	</div>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	
+	<script>
+		function timeTick() {
+			var date = new Date()
+			document.querySelector('#time').textContent = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+		
+			let x = setTimeout(timeTick, 1000)
+		}
+	</script>
 </body>
 </html>
