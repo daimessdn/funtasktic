@@ -119,25 +119,33 @@
 
 	<div class="container">
 
-		<table class="mt-3 mb-3">
-			@foreach($tasks as $task)
+		@if (count($tasks) > 0)
+			<table class="mt-3 mb-3">
+				@foreach($tasks as $task)
 
-			<tr class="row">
-				<td class="col-md-6">
-					<strong>{{ $task->task_name }}</strong><br />
-					@if ($task->task_desc)
-						{{ $task->task_desc }}
-					@endif
-					<span class="badge badge-primary">{{ $task->due }}</span>
-				</td>
-				<td class="col-md-6 text-right">
-					<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary mb-1">mark completed</a>
-					<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger mb-1">delete</a>
-				</td>
-			</tr>
+				<tr class="row">
+					<td class="col-md-6">
+						<strong>{{ $task->task_name }}</strong><br />
+						@if ($task->task_desc)
+							{{ $task->task_desc }}
+						@endif
+						<span class="badge badge-primary">{{ $task->due }}</span>
+					</td>
+					<td class="col-md-6 text-right">
+						<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary mt-1 mb-1">mark completed</a>
+						<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger mt-1 mb-1">delete</a>
+					</td>
+				</tr>
 
-			@endforeach
-		</table>
+				@endforeach
+			</table>
+		@else
+			<div class="row">
+				<div class="col-12">
+					there are no tasks here.
+				</div>
+			</div>
+		@endif
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
