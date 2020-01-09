@@ -27,10 +27,15 @@
 <body>
 	<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top">
 		<div class="container">
-			<a class="navbar-brand" href="#">
+			<a class="navbar-brand nav-status" href="#">
 				&#64;{{ $user->name }}<br />
-				<span class="badge badge-primary badge-sm"> Level {{ $player->level }}</span>
 			</a>
+
+			<li class="nav-status">
+				<a class="nav-link active" href="#">
+					<span class="badge badge-primary badge-sm"> Level {{ $player->level }}</span>
+				</a>
+			</li>
 
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-status" style="width: 175px;">
@@ -45,7 +50,7 @@
 							aria-valuemax={{ $player->max_health }}
 						></div>
 					</div>
-				</li> 
+				</li>
 				<li class="nav-status" style="width: 175px;">
 					XP: {{ $player->xp }} / {{ $player->max_xp }}
 					<div class="progress">
@@ -60,10 +65,8 @@
 					</div>
 				</li>
 				<li class="nav-status">
-					<a class="nav-link active" href="#">
-						<i class="fa fa-calendar"></i>
-						{{ $mytime = Carbon\Carbon::now()->format('d-m-Y') }}
-					</a>
+					<i class="fa fa-calendar"></i>
+					{{ $mytime = Carbon\Carbon::now()->format('d-m-Y') }}
 				</li>
 				<li class="nav-status">
 					<a class="nav-link" href="#">
@@ -81,7 +84,7 @@
 	</nav>
 
 	<div class="container">
-		<form class="form-inline mt-3" action="/tasks/create" method="POST">
+		<form class="form-inline mt-3 sticky-top navbar navbar-dark bg-dark" action="/tasks/create" method="POST">
 			@csrf
 			<input type="text" name="task_name" class="form-control mb-2 mr-sm-2" placeholder="Input task here...">
 
@@ -102,18 +105,18 @@
 			</button>
 		</form>
 
-		<table>
+		<table class="mb-3">
 			@foreach($tasks as $task)
 
 			<tr>
-				<td class="col-md-6">
+				<td>
 					<strong>{{ $task->task_name }}</strong><br />
 					@if ($task->task_desc)
 						{{ $task->task_desc }}
 					@endif
 					<span class="badge badge-primary">{{ $task->due }}</span>
 				</td>
-				<td class="col-md-6">
+				<td>
 					<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary mb-1">mark completed</a>
 					<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger mb-1">delete</a>
 				</td>
