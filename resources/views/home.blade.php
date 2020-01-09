@@ -104,7 +104,7 @@
 						<strong>#</strong>
 					</div>
 				</div>
-				<input type="text" name="task_tag" class="form-control col-md-3 col-sm-4" placeholder="hashtag (optional)">
+				<input type="text" name="task_tag" class="form-control col-md-3 col-sm-4" placeholder="tag (optional)">
 			</div>
 
 			<input type="text" class="form-control mb-2 mr-sm-2" name="task_desc" placeholder="Description here">
@@ -133,7 +133,11 @@
 
 				<tr class="row">
 					<td class="col-md-6">
-						<strong>{{ $task->task_name }}</strong><br />
+						<strong>{{ $task->task_name }}</strong>
+						@if ($task->task_tag)
+							<span class="badge badge-warning">#{{ $task->task_tag }}</span>
+						@endif
+						<br />
 						@if ($task->task_desc)
 							{{ $task->task_desc }}
 						@endif

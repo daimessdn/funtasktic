@@ -16,6 +16,7 @@ class TaskController extends Controller
 
     	$task->player_id = Auth::user()->player->id;
     	$task->task_name = $request->task_name;
+        $task->task_tag = $request->task_tag;
     	$task->task_desc = $request->task_desc;
     	$task->due = $request->due;
 
