@@ -24,7 +24,7 @@
 	</style>
 </head>
 <body>
-	<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+	<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top">
 		<div class="container">
 			<a class="navbar-brand" href="#">
 				&#64;{{ $user->name }}<br />
@@ -57,12 +57,6 @@
 							aria-valuemax={{ $player->max_xp }}
 						></div>
 					</div>
-				</li>
-				<li class="nav-status">
-					<a class="nav-link active" href="#">
-						<i class="fa fa-calendar"></i>
-						{{ $mytime = Carbon\Carbon::now()->format('d-m-Y') }}
-					</a>
 				</li>
 				<li class="nav-status">
 					<a class="nav-link active" href="#">

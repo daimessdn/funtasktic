@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 
 // auth
+route::get('/register', 'AuthController@register');
+route::post('/register/verify', 'AuthController@verify_register');
 route::get('/login', 'AuthController@index');
 route::post('/login/verify', 'AuthController@verify');
 route::get('/logout', 'HomeController@logout');
