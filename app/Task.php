@@ -9,7 +9,7 @@ use App\Player;
 class Task extends Model
 {
     protected $table = "tasks";
-    protected $fillable = ["task_name", "task_desc", "due"];
+    protected $fillable = ["task_name", "task_desc", "task_tag", "due"];
 
     public function player() {
         return $this->belongsTo(Player::class);
