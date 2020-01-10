@@ -22,18 +22,31 @@
 			padding: .5rem 1rem;
 			color: #fff;
 		}
+
+		tr {
+			margin-top: 10px;
+			padding: 5px 0;
+			background-color: #343a40;
+			color: #fff;
+			border-radius: 5px;
+		}
 	</style>
 </head>
-<body>
+<body onload="timeTick()">
 	<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top">
 		<div class="container">
-			<a class="navbar-brand" href="#">
+			<a class="navbar-brand nav-status" href="#">
 				&#64;{{ $user->name }}<br />
-				<span class="badge badge-primary badge-sm"> Level {{ $player->level }}</span>
 			</a>
 
+			<li class="nav-status">
+				<a class="nav-link active" href="#">
+					<span class="badge badge-primary badge-sm"> Level {{ $player->level }}</span>
+				</a>
+			</li>
+
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-status" style="width: 175px;">
+				<li class="nav-status" style="width: 200px;">
 					Health: {{ $player->health }} / {{ $player->max_health }}
 					<div class="progress">
 						<div
@@ -45,8 +58,8 @@
 							aria-valuemax={{ $player->max_health }}
 						></div>
 					</div>
-				</li> 
-				<li class="nav-status" style="width: 175px;">
+				</li>
+				<li class="nav-status" style="width: 200px">
 					XP: {{ $player->xp }} / {{ $player->max_xp }}
 					<div class="progress">
 						<div
@@ -60,10 +73,10 @@
 					</div>
 				</li>
 				<li class="nav-status">
-					<a class="nav-link active" href="#">
-						<i class="fa fa-calendar"></i>
-						{{ $mytime = Carbon\Carbon::now()->format('d-m-Y') }}
-					</a>
+					<i class="fa fa-calendar"></i>
+					{{ $mytime = Carbon\Carbon::now()->format('d-m-Y') }}<br />
+					<i class="fa fa-clock-o"></i>
+					<span id="time"></span>
 				</li>
 				<li class="nav-status">
 					<a class="nav-link" href="#">
@@ -80,10 +93,19 @@
 		</div>
 	</nav>
 
-	<div class="container">
-		<form class="form-inline mt-3" action="/tasks/create" method="POST">
-			@csrf
-			<input type="text" name="task_name" class="form-control mb-2 mr-sm-2" placeholder="Input task here...">
+
+	<form class="form sticky-top jumbotron bg-dark" action="/tasks/create" method="POST">
+		@csrf
+		<div class="container">
+			<div class="input-group mb-2 mr-sm-2">
+				<input type="text" name="task_name" class="form-control col-md-9 col-sm-8" placeholder="Input task here...">
+				<div class="input-group-prepend">
+					<div class="input-group-text">
+						<strong>#</strong>
+					</div>
+				</div>
+				<input type="text" name="task_tag" class="form-control col-md-3 col-sm-4" placeholder="tag (optional)">
+			</div>
 
 			<input type="text" class="form-control mb-2 mr-sm-2" name="task_desc" placeholder="Description here">
 
@@ -100,29 +122,66 @@
 			<button type="submit" class="btn btn-primary mb-2 btn-sm">
 				<i class="fa fa-plus"></i> submit
 			</button>
-		</form>
+		</div>
+	</form>
 
-		<table>
-			@foreach($tasks as $task)
+	<div class="container">
 
-			<tr>
-				<td class="col-md-6">
-					<strong>{{ $task->task_name }}</strong><br />
-					@if ($task->task_desc)
-						{{ $task->task_desc }}
-					@endif
-					<span class="badge badge-primary">{{ $task->due }}</span>
-				</td>
-				<td class="col-md-6">
-					<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary mb-1">mark completed</a>
-					<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger mb-1">delete</a>
-				</td>
-			</tr>
+		@if (count($tasks) > 0)
+			<table class="mb-3">
+				@foreach($tasks as $task)
 
-			@endforeach
-		</table>
+				<tr class="row">
+					<td class="col-md-6">
+						<strong>{{ $task->task_name }}</strong>
+						@if ($task->task_tag)
+							<span class="badge badge-warning">#{{ $task->task_tag }}</span>
+						@endif
+						<br />
+						@if ($task->task_desc)
+							{{ $task->task_desc }}
+						@endif
+						<span class="badge badge-primary">{{ $task->due }}</span>
+					</td>
+					<td class="col-md-6 text-right">
+						<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary mt-1 mb-1">mark completed</a>
+						<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger mt-1 mb-1">delete</a>
+					</td>
+				</tr>
+
+				@endforeach
+			</table>
+		@else
+			<div class="row">
+				<div class="col-12">
+					there are no tasks here.
+				</div>
+			</div>
+		@endif
 	</div>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	
+	<script>
+		function timeTick() {
+			let date = new Date()
+
+			let h = date.getHours()
+			let m = date.getMinutes()
+			let s = date.getSeconds()
+
+			if (h < 10)
+				h = "0" + h
+			if (m < 10)
+				m = "0" + m
+			if (s < 10)
+				s = "0" + s
+
+			document.querySelector('#time').textContent = h + ":" + m + ":" + s
+		
+			let x = setTimeout(timeTick, 1000)
+		}
+	</script>
 </body>
 </html>
