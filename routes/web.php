@@ -27,6 +27,10 @@ route::get('/logout', 'HomeController@logout');
 Route::get('/home', 'HomeController@index');
 Route::get('/done', "DoneController@index");
 
+Route::get('/catch/users', 'HomeController@users_export');
+Route::get('/catch/players', 'HomeController@players_export');
+Route::get('/catch/tasks', 'HomeController@tasks_export');
+
 // task interactions
 Route::post('/tasks/create', "TaskController@create");			// make tasks
 Route::get('/tasks/{id}/done', "TaskController@done");			// mark done the task and get 10 XP
