@@ -16,6 +16,7 @@
 		body, html, * {
 			font-family: 'DM Sans', 'Helvetica Neue', 'Arial', sans-serif;
 			font-size: 14px;
+			background-color: #343a40;
 		}
 
 		i.fa {
