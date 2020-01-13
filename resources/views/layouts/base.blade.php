@@ -42,14 +42,9 @@
 		<div class="container">
 			<a class="navbar-brand nav-status" href="/home">
 				&#64;{{ $user->name }}<br />
+				<span class="badge badge-primary badge-sm"> Level {{ $player->level }}</span>
 			</a>
-			
-			<li class="nav-status">
-				<a class="nav-link active" href="#">
-					<span class="badge badge-primary badge-sm"> Level {{ $player->level }}</span>
-				</a>
-			</li>
-			
+
 			<ul class="navbar-nav navbar-expand-lg">
 				<li class="nav-status" style="width: 200px;">
 					Health: {{ $player->health }} / {{ $player->max_health }}
