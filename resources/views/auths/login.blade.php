@@ -1,31 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Login</title>
-	<link rel="stylesheet" href="">
-</head>
-<body>
-	<h1>Login into funtasktic</h1>
-	<form action="/login/verify" method="POST">
-		@csrf
+@extends('layouts.auths')
 
-		<label for="email">
-			Email:
-		</label>
-		<input tyle="email" name="email" required />
+@section('content')
+	<div class="jumbotron-auth bg-dark text-light">
+		<h1>Login into funtasktic</h1>
+		<form action="/login/verify" class="form-inline" method="POST">
+			@csrf
 
-		<br />
+			<div class="form-group">
+				<label for="email">
+					Email:
+				</label>
+				<input tyle="email" class="form-control ml-1 mr-3" name="email" required />
+			</div>
 
-		<label for="password">
-			Password:
-		</label>
-		<input type="password" name="password" required />
+			<div class="form-group">
+				<label for="password">
+					Password:
+				</label>
+				<input type="password" class="form-control ml-1 mr-3" name="password" required />
+			</div>
 
-		<br />
+			<span>
+				Don't have account? <a href="/register">Create one!</a>
+			</span>
 
-		<button type="submit">submit</button>
-	</form>
-</body>
-</html>
+			<button type="submit" class="ml-3 btn btn-primary btn-sm">submit</button>
+		</form>
+	</div>
+@endsection
