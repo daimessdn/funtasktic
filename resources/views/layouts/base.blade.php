@@ -13,6 +13,7 @@
 			font-family: "Helvetica Neue";
 			src: url('fonts/HelveticaNeue-Roman.otf')
 		}
+		
 		body, html, * {
 			font-family: 'DM Sans', 'Helvetica Neue', 'Arial', sans-serif;
 			font-size: 14px;
@@ -82,19 +83,18 @@
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<ul class="navbar-nav collapse navbar-collapse text-left" id="navbarNav">
-				
-				<li class="nav-item nav-status">
+			<ul class="navbar-nav collapse navbar-collapse" id="navbarNav">
+				<li class="nav-item nav-status text-left">
 					<a class="nav-link" href="#">
 						Challenge
 					</a>
         </li>
-        <li class="nav-item nav-status">
+        <li class="nav-item nav-status text-left">
 					<a class="nav-link" href="/done">
 						Done
 					</a>
 				</li>
-				<li class="nav-item nav-status">
+				<li class="nav-item nav-status text-left">
 					<a class="nav-link" href="/logout">
 						<i class="fa fas fa-sign-out-alt"></i>	
 						Logout
