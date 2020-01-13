@@ -39,14 +39,21 @@
 	</style>
 </head>
 <body onload="timeTick()">
-	<nav class="navbar navbar-dark bg-dark sticky-top">
+	<nav class="navbar navbar-dark bg-dark">
 		<div class="container">
 			<a class="navbar-brand nav-status" href="/home">
 				&#64;{{ $user->name }}<br />
 				<span class="badge badge-primary badge-sm"> Level {{ $player->level }}</span>
 			</a>
+			
+			<li class="nav-status">
+				<i class="fa fas fa-calendar-alt"></i>
+				{{ $mytime = Carbon\Carbon::now()->format('d-m-Y') }}<br />
+				<i class="fa fas fa-clock"></i>
+				<span id="time"></span>
+			</li>
 
-			<ul class="navbar-nav navbar-expand-lg">
+			<ul class="navbar-nav navbar-expand-lg mr-auto">
 				<li class="nav-status" style="width: 200px;">
 					Health: {{ $player->health }} / {{ $player->max_health }}
 					<div class="progress">
@@ -73,28 +80,22 @@
 						></div>
 					</div>
 				</li>
-				<li class="nav-status">
-					<i class="fa fas fa-calendar-alt"></i>
-					{{ $mytime = Carbon\Carbon::now()->format('d-m-Y') }}<br />
-					<i class="fa fas fa-clock"></i>
-					<span id="time"></span>
-				</li>
 			</ul>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<ul class="navbar-nav collapse navbar-collapse" id="navbarNav">
-				<li class="nav-item nav-status text-left">
+			<ul class="navbar-nav collapse navbar-collapse ml-auto sticky-top" id="navbarNav">
+				<li class="nav-item nav-status">
 					<a class="nav-link" href="#">
 						Challenge
 					</a>
         </li>
-        <li class="nav-item nav-status text-left">
+        <li class="nav-item nav-status">
 					<a class="nav-link" href="/done">
 						Done
 					</a>
 				</li>
-				<li class="nav-item nav-status text-left">
+				<li class="nav-item nav-status">
 					<a class="nav-link" href="/logout">
 						<i class="fa fas fa-sign-out-alt"></i>	
 						Logout
