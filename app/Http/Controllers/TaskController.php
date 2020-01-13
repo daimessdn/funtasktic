@@ -16,7 +16,7 @@ class TaskController extends Controller
 
     	$task->player_id = Auth::user()->player->id;
     	$task->task_name = $request->task_name;
-        $task->task_tag = $request->task_tag;
+      $task->task_tag = $request->task_tag;
     	$task->task_desc = $request->task_desc;
     	$task->due = $request->due;
 
@@ -45,7 +45,22 @@ class TaskController extends Controller
     		DB::update('update player set level = ? where user_id = ?', [$level + 1, Auth::user()->id]);
     	}
 
-    	return redirect('home');
+    	return back();
+		}
+		
+		public function undone($id) {
+    	$task = Task::find($id);
+
+    	$level = Auth::user()->player->level;
+    	$health = Auth::user()->player->health - 10;
+    	$max_health = Auth::user()->player->max_health;
+    	$xp = Auth::user()->player->xp;
+    	$max_xp = Auth::user()->player->max_xp;
+
+    	DB::update('update tasks set completed = 0 where id = ?', [$id]);
+    	DB::update('update player set health = ? where user_id = ?', [$health, Auth::user()->id]);
+
+    	return back();
     }
 
     public function delete($id) {
@@ -57,6 +72,6 @@ class TaskController extends Controller
 
     	DB::update('update player set health = ? where user_id = ?', [$health - 10, Auth::user()->id]);
 
-    	return redirect('home');
+    	return back();
     }
 }
