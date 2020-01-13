@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c3a911f10176c8c876ffa92aac7054e5",
+    "content-hash": "ad0b4e10c61a5c20d646227a710b9571",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -5051,5 +5051,7 @@
         "php": "^7.2",
         "ext-pdo_sqlite": "*"
     },
-    "platform-dev": []
+    "platform-dev": {
+        "ext-pdo_sqlite": "*"
+    }
 }
