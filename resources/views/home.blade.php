@@ -2,15 +2,20 @@
 <html>
 <head>
 	<meta charset=utf-8>
-	<meta name=description content="">
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<title>funtasktic</title>
 	<link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet"> 
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="css/fontawesome.min.css" rel="stylesheet">
+	<link href="css/all.css" rel="stylesheet">
 	<style type="text/css" media="screen">
+		@font-face {
+			font-family: "Helvetica Neue";
+			src: url('fonts/HelveticaNeue-Roman.otf')
+		}
 		body, html, * {
-			font-family: 'DM Sans';
+			font-family: 'DM Sans','Helvetica Neue', '';
+			font-size: 14px;
 		}
 
 		i.fa {
@@ -73,9 +78,9 @@
 					</div>
 				</li>
 				<li class="nav-status">
-					<i class="fa fa-calendar"></i>
+					<i class="fa fas fa-calendar-alt"></i>
 					{{ $mytime = Carbon\Carbon::now()->format('d-m-Y') }}<br />
-					<i class="fa fa-clock-o"></i>
+					<i class="fa fas fa-clock"></i>
 					<span id="time"></span>
 				</li>
 				<li class="nav-status">
@@ -85,7 +90,7 @@
 				</li>
 				<li class="nav-status">
 					<a class="nav-link" href="/logout">
-						<i class="fa fa-sign-out"></i>	
+						<i class="fa fas fa-sign-out-alt"></i>	
 						Logout
 					</a>
 				</li>
@@ -113,14 +118,14 @@
 			<div class="input-group mb-2 mr-sm-2">
 				<div class="input-group-prepend">
 					<div class="input-group-text">
-						<i class="fa fa-calendar"></i>
+						<i class="fa fas fa-calendar-alt"></i>
 					</div>
 				</div>
 				<input type="date" name="due" class="form-control" placeholder="Due">
 			</div>
 
 			<button type="submit" class="btn btn-primary mb-2 btn-sm">
-				<i class="fa fa-plus"></i> submit
+				<i class="fa fas fa-plus"></i> submit
 			</button>
 		</div>
 	</form>
@@ -160,8 +165,8 @@
 		@endif
 	</div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript"></script>
 	
 	<script>
 		function timeTick() {
