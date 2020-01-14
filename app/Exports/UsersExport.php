@@ -16,4 +16,18 @@ class UsersExport implements FromCollection, WithHeadings
         $user = User::all();
         return $user;
     }
+
+    public function headings(): array
+    {
+        return [
+            'id',
+            'name',
+            'email',
+            'email_verified_at',
+            'password',
+            'remember_token',
+            'created_at',
+            'updated_at'
+        ];
+    }
 }

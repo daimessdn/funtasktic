@@ -15,4 +15,17 @@ class PlayersExport implements FromCollection, WithHeadings
     {
         return Player::all();
     }
+
+    public function headings(): array
+    {
+        return [
+            'id',
+            'user_id',
+            'level',
+            'health',
+            'max_health',
+            'xp',
+            'max_xp'
+        ];
+    }
 }

@@ -15,4 +15,19 @@ class TasksExport implements FromCollection, WithHeadings
     {
         return Task::all();
     }
+
+    public function headings(): array
+    {
+        return [
+            'id',
+            'player_id',
+            'task_name',
+            'task_desc',
+            'task_tag',
+            'due',
+            'completed',
+            'created_at',
+            'updated_at'
+        ];
+    }
 }
