@@ -4,9 +4,9 @@ namespace App\Exports;
 
 use App\Player;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+// use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class PlayersExport implements FromCollection, WithHeadings
+class PlayersExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -14,18 +14,5 @@ class PlayersExport implements FromCollection, WithHeadings
     public function collection()
     {
         return Player::all();
-    }
-
-    public function headings(): array
-    {
-        return [
-            'id',
-            'user_id',
-            'level',
-            'health',
-            'max_health',
-            'xp',
-            'max_xp'
-        ];
     }
 }
