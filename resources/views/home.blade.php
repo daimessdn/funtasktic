@@ -84,7 +84,7 @@
 						</td>
 						<td class="col-md-3 text-right">
 							<button type="submit" class="btn btn-primary mb-2 btn-sm">
-								update
+								<i class="fa fas fa-pen"></i> update
 							</button>
 							<button type="button" class="btn btn-danger mb-2 btn-sm" onclick="document.getElementById('edit{{ $task->id }}').style.display = 'none'">
 								<i class="fa fas fa-times"></i> cancel
