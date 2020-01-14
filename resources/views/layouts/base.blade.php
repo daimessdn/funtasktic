@@ -23,6 +23,10 @@
 			padding-right: 2px;
 		}
 
+		.form-edit {
+			display: none;
+		}
+
 		.nav-status {
 			display: block;
 			padding: .5rem 1rem;

@@ -51,11 +51,47 @@
 						<span class="badge badge-primary">{{ $task->due }}</span>
 					</td>
 					<td class="col-md-6 text-right">
+						<a href="#" onclick="document.getElementById('edit{{ $task->id }}').style.display = 'block'" class="btn btn-sm btn-primary mt-1 mb-1">edit</a>
 						<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary mt-1 mb-1">mark completed</a>
 						<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger mt-1 mb-1">delete</a>
 					</td>
 				</tr>
+				<form class="form bg-dark" action="/tasks/{{ $task->id }}/update" method="POST">
+					@csrf
+					<tr class="row form-edit" id="edit{{ $task->id }}">
+						<td class="col-md-9">
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="text" name="task_name" class="form-control col-md-9 col-sm-8" placeholder="Input task here...">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<strong>#</strong>
+									</div>
+								</div>
+								<input type="text" name="task_tag" class="form-control col-md-3 col-sm-4" placeholder="tag (optional)">
+							</div>
 
+							<input type="text" class="form-control mb-2 mr-sm-2" name="task_desc" placeholder="Description here">
+
+							<label class="sr-only" for="due">Due to</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fa fas fa-calendar-alt"></i>
+									</div>
+								</div>
+								<input type="date" name="due" class="form-control" placeholder="Due">
+							</div>
+						</td>
+						<td class="col-md-3 text-right">
+							<button type="submit" class="btn btn-primary mb-2 btn-sm">
+								update
+							</button>
+							<button type="button" class="btn btn-danger mb-2 btn-sm" onclick="document.getElementById('edit{{ $task->id }}').style.display = 'none'">
+								<i class="fa fas fa-times"></i> cancel
+							</button>
+						</td>
+					</tr>
+				</form>
 				@endforeach
 			</table>
 		@else
