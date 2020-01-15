@@ -51,7 +51,7 @@
 						<span class="badge badge-primary">{{ $task->due }}</span>
 					</td>
 					<td class="col-md-6 text-right">
-						<a href="#" onclick="document.getElementById('edit{{ $task->id }}').style.display = 'block'" class="btn btn-sm btn-primary mt-1 mb-1">edit</a>
+						<button onclick="document.getElementById('edit{{ $task->id }}').style.display = 'block'" class="btn btn-sm btn-primary mt-1 mb-1">edit</button>
 						<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary mt-1 mb-1">mark completed</a>
 						<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger mt-1 mb-1">delete</a>
 					</td>
