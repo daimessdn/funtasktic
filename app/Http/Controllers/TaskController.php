@@ -16,7 +16,7 @@ class TaskController extends Controller
 
     	$task->player_id = Auth::user()->player->id;
     	$task->task_name = $request->task_name;
-      $task->task_tag = $request->task_tag;
+         $task->task_tag = $request->task_tag;
     	$task->task_desc = $request->task_desc;
     	$task->due = $request->due;
 
@@ -61,6 +61,13 @@ class TaskController extends Controller
     	DB::update('update player set health = ? where user_id = ?', [$health, Auth::user()->id]);
 
     	return back();
+    }
+
+    public function update($id, Request $request) {
+        $task = Task::find($id);
+        $task->update($request->all());
+
+        return back();
     }
 
     public function delete($id) {

@@ -61,16 +61,16 @@
 					<tr class="row form-edit" id="edit{{ $task->id }}">
 						<td class="col-md-9">
 							<div class="input-group mb-2 mr-sm-2">
-								<input type="text" name="task_name" class="form-control col-md-9 col-sm-8" placeholder="Input task here...">
+								<input type="text" name="task_name" class="form-control col-md-9 col-sm-8" placeholder="Input task here..."  value="{{ $task->task_name }}">
 								<div class="input-group-prepend">
 									<div class="input-group-text">
 										<strong>#</strong>
 									</div>
 								</div>
-								<input type="text" name="task_tag" class="form-control col-md-3 col-sm-4" placeholder="tag (optional)">
+								<input type="text" name="task_tag" class="form-control col-md-3 col-sm-4" placeholder="tag (optional)"  value="{{ $task->task_tag }}">
 							</div>
 
-							<input type="text" class="form-control mb-2 mr-sm-2" name="task_desc" placeholder="Description here">
+							<input type="text" class="form-control mb-2 mr-sm-2" name="task_desc" placeholder="Description here"  value="{{ $task->task_desc }}">
 
 							<label class="sr-only" for="due">Due to</label>
 							<div class="input-group mb-2 mr-sm-2">
@@ -79,7 +79,7 @@
 										<i class="fa fas fa-calendar-alt"></i>
 									</div>
 								</div>
-								<input type="date" name="due" class="form-control" placeholder="Due">
+								<input type="date" name="due" class="form-control" placeholder="Due" value="{{ $task->due }}">
 							</div>
 						</td>
 						<td class="col-md-3 text-right">
