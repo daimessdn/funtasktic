@@ -17,7 +17,7 @@ inspired from coder's playing games exprience that are using healths, XPs, and l
 - live clock and date
 
 ## demo
-[click here](funtasktic.herokuapp.com)
+[click here](http://funtasktic.herokuapp.com)
 
 ## about author (or else, coder)
 [click here](https://github.com/daimessdn)
