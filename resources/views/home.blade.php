@@ -1,88 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset=utf-8>
-	<meta name=description content="">
-	<meta name=viewport content="width=device-width, initial-scale=1">
-	<title>funtasktic</title>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-	<style type="text/css" media="screen">
-		body, html, * {
-			font-family: 'Helvetica Neue';
-		}
+@extends('layouts.base')
 
-		i.fa {
-			padding-right: 2px;
-		}
-
-		.nav-status {
-			display: block;
-			padding: .5rem 1rem;
-			color: #fff;
-		}
-	</style>
-</head>
-<body>
-	<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top">
+@section('content')
+	<form class="form sticky-top jumbotron bg-dark" action="/tasks/create" method="POST">
+		@csrf
 		<div class="container">
-			<a class="navbar-brand" href="#">
-				&#64;{{ $user->name }}<br />
-				<span class="badge badge-primary badge-sm"> Level {{ $player->level }}</span>
-			</a>
-
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-status" style="width: 175px;">
-					Health: {{ $player->health }} / {{ $player->max_health }}
-					<div class="progress">
-						<div
-							class="progress-bar"
-							style="width: {{ $player->health / $player->max_health * 100 }}%"
-							role="progressbar"
-							aria-valuenow={{ $player->health }}
-							aria-valuemin="0"
-							aria-valuemax={{ $player->max_health }}
-						></div>
+			<div class="input-group mb-2 mr-sm-2">
+				<input type="text" name="task_name" class="form-control col-md-9 col-sm-8" placeholder="Input task here...">
+				<div class="input-group-prepend">
+					<div class="input-group-text">
+						<strong>#</strong>
 					</div>
-				</li> 
-				<li class="nav-status" style="width: 175px;">
-					XP: {{ $player->xp }} / {{ $player->max_xp }}
-					<div class="progress">
-						<div
-							class="progress-bar"
-							style="width: {{ $player->xp / $player->max_xp * 100 }}%"
-							role="progressbar"
-							aria-valuenow="{{ $player->xp }}"
-							aria-valuemin="0"
-							aria-valuemax={{ $player->max_xp }}
-						></div>
-					</div>
-				</li>
-				<li class="nav-status">
-					<a class="nav-link active" href="#">
-						<i class="fa fa-calendar"></i>
-						{{ $mytime = Carbon\Carbon::now()->format('d-m-Y') }}
-					</a>
-				</li>
-				<li class="nav-status">
-					<a class="nav-link" href="#">
-						Challenge
-					</a>
-				</li>
-				<li class="nav-status">
-					<a class="nav-link" href="/logout">
-						<i class="fa fa-sign-out"></i>	
-						Logout
-					</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-
-	<div class="container">
-		<form class="form-inline mt-3" action="/tasks/create" method="POST">
-			@csrf
-			<input type="text" name="task_name" class="form-control mb-2 mr-sm-2" placeholder="Input task here...">
+				</div>
+				<input type="text" name="task_tag" class="form-control col-md-3 col-sm-4" placeholder="tag (optional)">
+			</div>
 
 			<input type="text" class="form-control mb-2 mr-sm-2" name="task_desc" placeholder="Description here">
 
@@ -90,38 +20,87 @@
 			<div class="input-group mb-2 mr-sm-2">
 				<div class="input-group-prepend">
 					<div class="input-group-text">
-						<i class="fa fa-calendar"></i>
+						<i class="fa fas fa-calendar-alt"></i>
 					</div>
 				</div>
 				<input type="date" name="due" class="form-control" placeholder="Due">
 			</div>
 
 			<button type="submit" class="btn btn-primary mb-2 btn-sm">
-				<i class="fa fa-plus"></i> submit
+				<i class="fa fas fa-plus"></i> submit
 			</button>
-		</form>
+		</div>
+	</form>
 
-		<table>
-			@foreach($tasks as $task)
+	<div class="container">
 
-			<tr>
-				<td class="col-md-6">
-					<strong>{{ $task->task_name }}</strong><br />
-					@if ($task->task_desc)
-						{{ $task->task_desc }}<br />
-					@endif
-					<span class="badge badge-primary">{{ $task->due }}</span>
-				</td>
-				<td class="col-md-6">
-					<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary mb-1">mark completed</a>
-					<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger mb-1">delete</a>
-				</td>
-			</tr>
+		@if (count($tasks) > 0)
+			<table class="mb-3">
+				@foreach($tasks as $task)
 
-			@endforeach
-		</table>
+				<tr class="row">
+					<td class="col-md-6">
+						<strong>{{ $task->task_name }}</strong>
+						@if ($task->task_tag)
+							<span class="badge badge-warning">#{{ $task->task_tag }}</span>
+						@endif
+						<br />
+						@if ($task->task_desc)
+							{{ $task->task_desc }}
+						@endif
+						<span class="badge badge-primary">{{ $task->due }}</span>
+					</td>
+					<td class="col-md-6 text-right">
+						<button onclick="document.getElementById('edit{{ $task->id }}').style.display = 'block'" class="btn btn-sm btn-primary mt-1 mb-1">edit</button>
+						<a href="tasks/{{ $task->id }}/done" class="btn btn-sm btn-primary mt-1 mb-1">mark completed</a>
+						<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger mt-1 mb-1">delete</a>
+					</td>
+				</tr>
+				<form class="form bg-dark" action="/tasks/{{ $task->id }}/update" method="POST">
+					@csrf
+					<tr class="row form-edit" id="edit{{ $task->id }}">
+						<td class="col-md-9">
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="text" name="task_name" class="form-control col-md-9 col-sm-8" placeholder="Input task here..."  value="{{ $task->task_name }}">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<strong>#</strong>
+									</div>
+								</div>
+								<input type="text" name="task_tag" class="form-control col-md-3 col-sm-4" placeholder="tag (optional)"  value="{{ $task->task_tag }}">
+							</div>
+
+							<input type="text" class="form-control mb-2 mr-sm-2" name="task_desc" placeholder="Description here"  value="{{ $task->task_desc }}">
+
+							<label class="sr-only" for="due">Due to</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fa fas fa-calendar-alt"></i>
+									</div>
+								</div>
+								<input type="date" name="due" class="form-control" placeholder="Due" value="{{ $task->due }}">
+							</div>
+						</td>
+						<td class="text-right">
+							<button type="submit" class="btn btn-primary mb-2 btn-sm">
+								<i class="fa fas fa-pen"></i> update
+							</button>
+							<button type="button" class="btn btn-danger mb-2 btn-sm" onclick="document.getElementById('edit{{ $task->id }}').style.display = 'none'">
+								<i class="fa fas fa-times"></i> cancel
+							</button>
+						</td>
+					</tr>
+				</form>
+				@endforeach
+			</table>
+		@else
+			<div class="row">
+				<div class="col-12">
+					there are no tasks here.
+				</div>
+			</div>
+		@endif
 	</div>
 
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-</body>
-</html>
+@endsection

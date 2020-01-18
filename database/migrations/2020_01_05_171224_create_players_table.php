@@ -32,7 +32,7 @@ class CreatePlayersTable extends Migration
     public function down()
     {
         Schema::table('player', function (Blueprint $table) {
-            //
+            Schema::dropIfExists('tasks');
         });
     }
 }
