@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('/tasks/create', "TaskController@create");			// make tasks
+Route::put('/tasks/{id}/done', "TaskController@done");			// mark done the task and get 10 XP
+Route::delete('/tasks/{id}/delete', "TaskController@delete");	// delete 1 task and inflict 10 damage
