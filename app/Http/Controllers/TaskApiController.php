@@ -27,4 +27,10 @@ class TaskApiController extends Controller
 
     	return $task->create($request->all());
     }
+
+    public function update(Request $request, $id) {
+    	$task = Task::findOrFail($id);
+
+    	return $task->update($request->all());
+    }
 }

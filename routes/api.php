@@ -21,3 +21,4 @@ Route::get('tasks/', 'TaskApiController@index');
 Route::get('tasks/{id}', 'TaskApiController@show');
 
 Route::post('tasks/create', "TaskApiController@create");
+Route::put('tasks/{id}', "TaskApiController@update");
