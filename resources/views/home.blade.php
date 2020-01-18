@@ -82,7 +82,7 @@
 								<input type="date" name="due" class="form-control" placeholder="Due" value="{{ $task->due }}">
 							</div>
 						</td>
-						<td class="col-md-3 text-right">
+						<td class="text-right">
 							<button type="submit" class="btn btn-primary mb-2 btn-sm">
 								<i class="fa fas fa-pen"></i> update
 							</button>

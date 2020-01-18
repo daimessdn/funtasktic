@@ -40,6 +40,10 @@
 			color: #fff;
 			border-radius: 5px;
 		}
+
+		td {
+			width: 100%;
+		}
 	</style>
 </head>
 <body onload="timeTick()">
