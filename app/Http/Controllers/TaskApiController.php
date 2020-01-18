@@ -33,4 +33,10 @@ class TaskApiController extends Controller
 
     	return $task->update($request->all());
     }
+
+    public function delete(Request $request, $id) {
+    	$task = Task::findOrFail($id);
+
+    	return $task->delete();
+    }
 }
