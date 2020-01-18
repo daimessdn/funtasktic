@@ -9,22 +9,22 @@ use App\Task;
 class TaskApiController extends Controller
 {
     public function index() {
-    	return Task::all();
+    	return Task::all()->where('player_id', '=', Auth::user()->id);
     }
 
     public function show($id) {
-    	return Task::find($id)->where('player_id', '=', Auth::user()->id);
+    	return Task::find($id);
     }
 
     public function create(Request $request) {
     	$task = new Task;
 
-    	$task->player_id = Auth::user()->player->id;
-    	$task->task_name = $request->task_name;
-        $task->task_tag = $request->task_tag;
-    	$task->task_desc = $request->task_desc;
-    	$task->due = $request->due;
+    	// // $task->player_id = Auth::user()->id;
+    	// $task->task_name = $request->task_name;
+     //    $task->task_tag = $request->task_tag;
+    	// $task->task_desc = $request->task_desc;
+    	// $task->due = $request->due;
 
-    	return $task->save();
+    	return $task->create($request->all());
     }
 }
