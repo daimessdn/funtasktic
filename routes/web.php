@@ -24,8 +24,8 @@ Route::post('/login/verify', 'AuthController@verify');
 Route::get('/logout', 'HomeController@logout');
 
 // home
-Route::get('/home', 'HomeController@index');
-Route::get('/done', "DoneController@index");
+// Route::get('/home', 'HomeController@index');
+// Route::get('/done', "DoneController@index");
 
 Route::get('/catch/users', 'HomeController@users_export');
 Route::get('/catch/players', 'HomeController@players_export');
