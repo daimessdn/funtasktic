@@ -32,14 +32,8 @@ Route::get('/catch/players', 'HomeController@players_export');
 Route::get('/catch/tasks', 'HomeController@tasks_export');
 
 // task interactions
-<<<<<<< HEAD
 // Route::post('/tasks/create', "TaskController@create");			// make tasks
 // Route::get('/tasks/{id}/done', "TaskController@done");			// mark done the task and get 10 XP
+// Route::post('/tasks/{id}/update', "TaskController@update");		// mark done the task and get 10 XP
+// Route::get('/tasks/{id}/undone', "TaskController@undone");		// mark not done
 // Route::get('/tasks/{id}/delete', "TaskController@delete");		// delete 1 task and inflict 10 damage
-=======
-Route::post('/tasks/create', "TaskController@create");			// make tasks
-Route::get('/tasks/{id}/done', "TaskController@done");			// mark done the task and get 10 XP
-Route::post('/tasks/{id}/update', "TaskController@update");		// mark done the task and get 10 XP
-Route::get('/tasks/{id}/undone', "TaskController@undone");		// mark not done
-Route::get('/tasks/{id}/delete', "TaskController@delete");		// delete 1 task and inflict 10 damage
->>>>>>> c780be45c05bd001ea233aa556a19ccd819f5fe1
