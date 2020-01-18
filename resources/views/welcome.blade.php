@@ -75,6 +75,7 @@
                 <div class="title m-b-md">
                     funtasktic
                 </div>
+                <div id="tasks"></div>
                     
                 <div class="links">
                     <a href="/login">login</a>
@@ -82,6 +83,7 @@
                 </div>
             </div>
         </div>
-        <<script src="../js/app.js" type="text/javascript" charset="utf-8" async defer></script>
+        <script src="js/app.js" type="text/javascript" async defer></script>
+        <script src="../js/app.js" type="text/javascript" async defer></script>
     </body>
 </html>
