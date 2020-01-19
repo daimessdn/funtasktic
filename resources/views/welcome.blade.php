@@ -68,14 +68,13 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="top-right links">
-                <div id="example"></div>
+                {{-- <div id="example"></div> --}}
             </div>
 
             <div class="content">
                 <div class="title m-b-md">
                     funtasktic
                 </div>
-                <div id="tasks"></div>
                     
                 <div class="links">
                     <a href="/login">login</a>

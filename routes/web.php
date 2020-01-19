@@ -30,3 +30,8 @@ Route::get('/home', 'HomeController@index');
 Route::post('/tasks/create', "TaskController@create");			// make tasks
 Route::get('/tasks/{id}/done', "TaskController@done");			// mark done the task and get 10 XP
 Route::get('/tasks/{id}/delete', "TaskController@delete");		// delete 1 task and inflict 10 damage
+
+// api test
+Route::get('/test/api/tasks', function () {
+	return view('task_list');
+});

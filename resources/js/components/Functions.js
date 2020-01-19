@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 class Function extends Component {
@@ -5,8 +7,10 @@ class Function extends Component {
         super();
 
         this.state = {
-            tasks : []
+
         };
+
+        this.getTasks = this.getTasks.bind(this);
     }
 
     componentDidMout()  {
@@ -15,22 +19,18 @@ class Function extends Component {
 
     getTasks() {
         return axios
-            .get('/api/tasks', {
+            .get('/api/tasks/', {
                 headers: { 'Content-Type' : 'application/json' }
             })
             .then(response => {
-                this.setState({
-                    tasks: [...data]
-                }, () => {
-                    console.log(this.state.tasks);
-                })
+                console.log(response.data);
             });
     }
 
     render() {
         return (
             <div>
-                hello
+                hello <button className="btn" onClick={this.getTasks}>get tasks</button>
             </div>
         );
     };

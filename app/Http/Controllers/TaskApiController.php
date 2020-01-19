@@ -9,7 +9,7 @@ use App\Task;
 class TaskApiController extends Controller
 {
     public function index() {
-    	return Task::all()->where('player_id', '=', Auth::user()->id);
+    	return Task::all();
     }
 
     public function show($id) {
