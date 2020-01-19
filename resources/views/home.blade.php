@@ -33,7 +33,8 @@
 	</form>
 
 	<div class="container">
-
+		{{-- <div id="tasks"></div>
+		<div id="example"></div> --}}
 		@if (count($tasks) > 0)
 			<table class="mb-3">
 				@foreach($tasks as $task)
