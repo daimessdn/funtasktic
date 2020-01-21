@@ -57,7 +57,7 @@
 						<a href="tasks/{{ $task->id }}/delete" class="btn btn-sm btn-danger mt-1 mb-1">delete</a>
 					</td>
 				</tr>
-				<form class="form bg-dark" action="/tasks/{{ $task->id }}/update" method="POST">
+				<form class="form bg-dark" action="/tasks/{{ $task->id }}/update">
 					@csrf
 					<tr class="row form-edit" id="edit{{ $task->id }}">
 						<td class="col-md-9">
