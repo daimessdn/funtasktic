@@ -58,10 +58,18 @@ class Function extends Component {
         ).then(() => {this.getTasks()});
     }
 
+    AuthUser() {
+        axios.get('/api/user')
+             .then(response => {
+        console.log(response.data);
+        });
+    }
+
     render() {
         return (
             <div>
                 <button onClick={this.getTasks}>get tasks</button>
+                <button onClick={this.AuthUser}>get tasks</button>
                 <ul>
                     { this.state.tasks.map((task) => <li key={task.id}>{task.task_name}</li>)}
                 </ul>

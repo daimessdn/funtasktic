@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Task;
+use App\User;
+use App\Player;
 
 class TaskApiController extends Controller
 {
@@ -40,5 +42,16 @@ class TaskApiController extends Controller
     	$task = Task::findOrFail($id);
 
     	return $task->delete();
+    }
+
+    // user API
+    public function userIndex() {
+        $user = Auth::user();
+
+        return response()->json([
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email
+        ]);
     }
 }

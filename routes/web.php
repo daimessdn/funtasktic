@@ -19,20 +19,29 @@ Route::get('/', function () {
 // auth
 route::get('/register', 'AuthController@register');
 route::post('/register/verify', 'AuthController@verify_register');
-route::get('/login', 'AuthController@index');
+route::get('/login', 'AuthController@index')->name('login');
 route::post('/login/verify', 'AuthController@verify');
-route::get('/logout', 'HomeController@logout');
 
-// home
-Route::get('/home', 'HomeController@index');
+Route::group(['middleware' => 'auth'], function() {
+	// home
+	Route::get('/home', 'HomeController@index');
+	Route::get('/done', 'DoneController@index');
 
-// task interactions
-Route::post('/tasks/create', "TaskController@create");			// make tasks
-Route::get('/tasks/{id}/done', "TaskController@done");			// mark done the task and get 10 XP
-Route::get('/tasks/{id}/update', "TaskController@update");			// mark done the task and get 10 XP
-Route::get('/tasks/{id}/delete', "TaskController@delete");		// delete 1 task and inflict 10 damage
+	// task interactions
+	Route::post('/tasks/create', "TaskController@create");			// make tasks
+	Route::get('/tasks/{id}/done', "TaskController@done");			// mark done the task and get 10 XP
+	Route::get('/tasks/{id}/update', "TaskController@update");		// mark done the task and get 10 XP
+	Route::get('/tasks/{id}/delete', "TaskController@delete");		// delete 1 task and inflict 10 damage
+	
+	route::get('/logout', 'HomeController@logout');
+});
+
 
 // api test
 Route::get('/test/api/tasks', function () {
 	return view('task_list');
+});
+
+Route::get('auth', function () {
+    return json_decode(auth('api')->user());
 });
