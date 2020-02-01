@@ -61,6 +61,7 @@
 				<span id="time"></span>
 			</li>
 
+
 			<ul class="navbar-nav navbar-expand-lg mr-auto">
 				<li class="nav-status" style="width: 200px;">
 					Health: {{ $player->health }} / {{ $player->max_health }}
@@ -89,6 +90,16 @@
 					</div>
 				</li>
 			</ul>
+			<div class="dropdown mr-2">
+			  <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <i class="fa fa-bell"></i>
+			  </button>
+			  <div class="dropdown-menu" style="z-index: 2000" aria-labelledby="dropdownMenuButton">
+			    <a class="dropdown-item" href="#">Action</a>
+			    <a class="dropdown-item" href="#">Another action</a>
+			    <a class="dropdown-item" href="#">Something else here</a>
+			  </div>
+			</div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
