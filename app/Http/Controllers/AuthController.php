@@ -17,6 +17,7 @@ class AuthController extends Controller
 
     public function verify(Request $request) {
     	if (Auth::attempt($request->only('email', 'password'))) {
+            // Auth::login($request, true);
             return redirect('/home');
         }
         

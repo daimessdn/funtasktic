@@ -14,7 +14,7 @@ use App\Task;
 class HomeController extends Controller
 {
     public function index() {
-    	$user = Auth::user();
+    	$user = Auth::user('api');
 
     	return view('home')->with('user', $user)->with('player', $user->player)->with('tasks', $user->player->task->where('completed', '=', 0)->sortBy('due'));
     }
@@ -34,5 +34,5 @@ class HomeController extends Controller
     }
     public function tasks_export() {
         return Excel::download(new TasksExport, 'tasks.csv');
-    }   
+    }
 }
