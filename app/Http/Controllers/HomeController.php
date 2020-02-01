@@ -15,7 +15,7 @@ use App\Notification;
 class HomeController extends Controller
 {
     public function index() {
-    	$user = Auth::user();
+    	$user = Auth::user('api');
 
         $notif = Notification::where('player_id', '=', Auth::id())->where('dismissed', '=', '0');
 
@@ -37,5 +37,5 @@ class HomeController extends Controller
     }
     public function tasks_export() {
         return Excel::download(new TasksExport, 'tasks.csv');
-    }   
+    }
 }

@@ -103,13 +103,13 @@
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<ul class="navbar-nav collapse navbar-collapse ml-auto sticky-top" id="navbarNav">
+			<ul class="navbar-nav collapse mr-auto sticky-top" id="navbarNav">
 				<li class="nav-item nav-status">
 					<a class="nav-link" href="#">
 						Challenge
 					</a>
-        </li>
-        <li class="nav-item nav-status">
+		        </li>
+		        <li class="nav-item nav-status">
 					<a class="nav-link" href="/done">
 						Done
 					</a>
@@ -149,5 +149,7 @@
 			let x = setTimeout(timeTick, 1000)
 		}
 	</script>
+	<script src="js/app.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script src="../../js/app.js" type="text/javascript" charset="utf-8" async defer></script>
 </body>
 </html>
