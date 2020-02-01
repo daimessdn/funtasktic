@@ -16,7 +16,7 @@ class TaskController extends Controller
 
     	$task->player_id = Auth::user()->player->id;
     	$task->task_name = $request->task_name;
-         $task->task_tag = $request->task_tag;
+        $task->task_tag = $request->task_tag;
     	$task->task_desc = $request->task_desc;
     	$task->due = $request->due;
 
@@ -43,12 +43,15 @@ class TaskController extends Controller
     		DB::update('update player set max_xp = ?, max_health = ? where user_id = ?', [$max_xp + (20 * $level), $max_health + 10, Auth::user()->id]);
     		DB::update('update player set health = ? where user_id = ?', [$max_health + 10, Auth::user()->id]);
     		DB::update('update player set level = ? where user_id = ?', [$level + 1, Auth::user()->id]);
+            DB::insert('insert into notifications (player_id, type, notification_content, dismissed) values (?, 1, ?, 0)', [
+                Auth::user()->id, 'Congratulations for your level up. You are now grown into level ' . strval($level + 1)
+            ]);
     	}
 
     	return back();
 		}
 		
-		public function undone($id) {
+	public function undone($id) {
     	$task = Task::find($id);
 
     	$level = Auth::user()->player->level;

@@ -10,13 +10,16 @@ use App\Exports\UsersExport;
 use App\Exports\PlayersExport;
 use App\Exports\TasksExport;
 use App\Task;
+use App\Notification;
 
 class HomeController extends Controller
 {
     public function index() {
     	$user = Auth::user();
 
-    	return view('home')->with('user', $user)->with('player', $user->player)->with('tasks', $user->player->task->where('completed', '=', 0)->sortBy('due'));
+        $notif = Notification::where('player_id', '=', Auth::id())->where('dismissed', '=', '0');
+
+    	return view('home')->with('user', $user)->with('player', $user->player)->with('notifs', $notif)->with('tasks', $user->player->task->where('completed', '=', 0)->sortBy('due'));
     }
 
     public function logout() {
