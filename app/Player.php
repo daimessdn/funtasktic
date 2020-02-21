@@ -18,4 +18,8 @@ class Player extends Model
     public function task () {
     	return $this->hasMany(Task::class);
     }
+
+	public function notification () {
+    	return $this->hasMany(Notification::class);
+    }    
 }
