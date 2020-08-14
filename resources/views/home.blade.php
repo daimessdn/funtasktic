@@ -35,6 +35,22 @@
 	{{ auth('api')->user() }}
 	<div class="container">
 
+		<div class="dropdown mr-2">
+			  <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <i class="fa fa-bell"></i>
+			  </button>
+			  <div class="dropdown-menu" style="z-index: 2000" aria-labelledby="dropdownMenuButton">
+			  	{{-- @if(count($notifs) != 0) --}}
+				  	{{-- @foreach($notifs as $notif) --}}
+					    <a class="dropdown-item" href="#">{{ $notifs }}</a>
+				  	{{-- @endforeach --}}
+				{{-- @endif --}}
+			  </div>
+			</div>
+
+			test
+		{{ $notifs }}
+
 	<div class="container">
 		@if (count($tasks) > 0)
 			<table class="mb-3">

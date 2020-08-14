@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\User;
 use App\Task;
+use App\Notification;
 
 class Player extends Model
 {
